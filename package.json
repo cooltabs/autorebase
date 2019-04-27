@@ -33,6 +33,9 @@
   "name": "autorebase",
   "private": true,
   "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "nodemon --exec \"npm start\"",
+    "start": "probot run ./src/nolambda-index.js",
     "check-build": "tsc --build tsconfig.build.json",
     "prettier": "prettier --ignore-path .gitignore \"**/*.{js,json,md,ts,yml}\"",
     "test": "jest",
