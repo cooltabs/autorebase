@@ -128,7 +128,7 @@ const merge = async ({
 }): Promise<MergeAction> => {
   debug("merging", pullRequestNumber);
   await octokit.pulls.merge({
-    merge_method: "rebase",
+    merge_method: "merge",
     number: pullRequestNumber,
     owner,
     repo,
