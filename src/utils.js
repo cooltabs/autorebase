@@ -85,7 +85,14 @@ const getPullRequestInfoWithKnownMergeableState = async ({ debug, label, octokit
     });
 };
 exports.getPullRequestInfoWithKnownMergeableState = getPullRequestInfoWithKnownMergeableState;
-const getPullRequestNumbers = (searchResults) => searchResults.items.map((item) => item.number);
+const getPullRequestNumbers = (searchResults) => {
+    if (searchResults["items"]) {
+        return searchResults.items.map((item) => item.number);
+    }
+    else {
+        return searchResults.number;
+    }
+};
 const findOldestPullRequest = async ({ debug, extraSearchQualifiers, label, octokit, owner, predicate, repo, }) => {
     const query = `is:pr is:open label:"${label}" repo:${owner}/${repo} ${extraSearchQualifiers}`;
     debug("searching oldest matching pull request", { query });
